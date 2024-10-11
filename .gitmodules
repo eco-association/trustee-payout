@@ -7,3 +7,6 @@
 [submodule "lib/forge-std"]
 	path = lib/forge-std
 	url = https://github.com/brockelmore/forge-std
+[submodule "lib/currency-1.5"]
+	path = lib/currency-1.5
+	url = https://github.com/eco-association/currency-1.5
