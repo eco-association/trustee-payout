@@ -1,5 +1,5 @@
-import "currency-1.5/contracts/governance/community/proposals/Proposal.sol";
-import "currency-1.5/contracts/currency/ECOx.sol";
+import {Proposal} from "currency-1.5/governance/community/proposals/Proposal.sol";
+import {ECOx} from "currency-1.5/currency/ECOx.sol";
 
 contract TrusteePayout is Proposal {
     
@@ -15,7 +15,7 @@ contract TrusteePayout is Proposal {
 
     constructor(
         address[] memory _recipients,
-        uint256[] _payouts,
+        uint256[] memory _payouts,
         ECOx _ecox,
         address _trustedNodes
         ) {

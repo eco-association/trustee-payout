@@ -1,46 +1,28 @@
-# Forge Template
+# Trustee Payout Test
 
-A template for quickly getting started with forge
-
-## Getting Started
+To start up the enviroment, run:
 
 ```
-mkdir my-project
-cd my-project
-forge init --template https://github.com/FrankieIsLost/forge-template
-git submodule update --init --recursive  ## initialize submodule dependencies
-npm install ## install development dependencies
+forge install
+```
+
+There may be an issue with the op-ethereum libraries not being found in the `op-eco` git submodule. If this occurs, run:
+
+```
+cd lib/currency-1.5
+yarn install
+cd -
+forge remappings > remappings.txt
+```
+
+To build, run:
+
+```
 forge build
+```
+
+To test, run:
+
+```
 forge test
 ```
-
-## Features
-
-### Testing Utilities
-
-Includes a `Utilities.sol` contract with common testing methods (like creating users with an initial balance), as well as various other utility contracts.
-
-### Preinstalled dependencies
-
-`ds-test` for testing, `forge-std` for better cheatcode UX, and `solmate` for optimized contract implementations.  
-
-### Linting
-
-Pre-configured `solhint` and `prettier-plugin-solidity`. Can be run by
-
-```
-npm run solhint
-npm run prettier
-```
-
-### CI with Github Actions
-
-Automatically run linting and tests on pull requests.
-
-### Default Configuration
-
-Including `.gitignore`, `.vscode`, `remappings.txt`
-
-## Acknowledgement
-
-Inspired by great dapptools templates like https://github.com/gakonst/forge-template, https://github.com/gakonst/dapptools-template and https://github.com/transmissions11/dapptools-template
