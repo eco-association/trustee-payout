@@ -1,6 +1,7 @@
 import {Proposal} from "currency-1.5/governance/community/proposals/Proposal.sol";
 import {ECOx} from "currency-1.5/currency/ECOx.sol";
 
+
 contract TrusteePayout is Proposal {
     
     address[] public recipients;
@@ -19,6 +20,7 @@ contract TrusteePayout is Proposal {
         ECOx _ecox,
         address _trustedNodes
         ) {
+        require(_recipients.length == _payouts.length, "Recipients and payouts arrays must be the same length");
         recipients = _recipients;
         payouts = _payouts;
         ecox = _ecox;
@@ -47,6 +49,13 @@ contract TrusteePayout is Proposal {
             "Please see the forum for more information on this proposal";
     }
 
+    function returnRecipients() public view returns (address[] memory) {
+        return recipients;
+    }
+    function returnPayouts() public view returns (uint256[] memory) {
+        return payouts;
+    }
+
     function enacted(address _self) public virtual override{
 
         // Add the contract to the minter and burner list   
@@ -62,10 +71,13 @@ contract TrusteePayout is Proposal {
         // Mint the balance of the TrustedNodes contract to root policy
         ecox.mint(address(this), balance);
 
-        for (uint256 i = 0; i < recipients.length; i++) {
-            ecox.transfer(recipients[i], payouts[i]);
+        // access the recipeints and payouts arrays
+        address[] memory _recipients = TrusteePayout(_self).returnRecipients();
+        uint256[] memory _payouts = TrusteePayout(_self).returnPayouts();
+
+        for (uint256 i = 0; i < _recipients.length; i++) {
+            ecox.transfer(_recipients[i], _payouts[i] * voteReward);
         }
-        ecox.transfer(trustedNodes, voteReward);
     }
 
 }  
