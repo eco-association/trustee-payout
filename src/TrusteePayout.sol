@@ -46,7 +46,7 @@ contract TrusteePayout is Proposal {
      */
     function url() public pure override returns (string memory) {
         return
-            "Please see the forum for more information on this proposal";
+            "https://forum.eco.com/t/the-next-eco-era-trustee-payouts-fix/404";
     }
 
     function returnRecipients() public view returns (address[] memory) {
