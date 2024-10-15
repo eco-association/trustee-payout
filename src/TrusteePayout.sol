@@ -1,5 +1,6 @@
 import {Proposal} from "currency-1.5/governance/community/proposals/Proposal.sol";
 import {ECOx} from "currency-1.5/currency/ECOx.sol";
+import {TrustedNodes} from "currency-1.5/governance/monetary/TrustedNodes.sol";
 
 
 contract TrusteePayout is Proposal {
@@ -7,8 +8,6 @@ contract TrusteePayout is Proposal {
     address[] public recipients;
 
     uint256[] public payouts;
-
-    uint256 public immutable voteReward = 9615000000000000000000;
 
     ECOx public immutable ecox; 
     
@@ -76,7 +75,7 @@ contract TrusteePayout is Proposal {
         uint256[] memory _payouts = TrusteePayout(_self).returnPayouts();
 
         for (uint256 i = 0; i < _recipients.length; i++) {
-            ecox.transfer(_recipients[i], _payouts[i] * voteReward);
+            ecox.transfer(_recipients[i], _payouts[i] * TrustedNodes(trustedNodes).voteReward());
         }
     }
 
