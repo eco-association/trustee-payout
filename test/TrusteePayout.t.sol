@@ -1,6 +1,7 @@
 import {Test} from "forge-std/Test.sol";
 import {ECOx} from "currency-1.5/currency/ECOx.sol";
 import {Policy} from "currency-1.5/policy/Policy.sol";
+import {TrustedNodes} from "currency-1.5/governance/monetary/TrustedNodes.sol";
 import "./../src/TrusteePayout.sol";
 import "forge-std/console.sol";
 
@@ -105,7 +106,7 @@ contract ForkTest is Test {
             recipients,
             payouts,
             ECOx(0xcccD1Ba9f7acD6117834E0D28F25645dECb1736a),
-            0x9fA130E9d1dA166164381F6d1de8660da0afc1f1 // trusted nodes
+            0x9fA130E9d1dA166164381F6d1de8660da0afc1f1
         );
 
         // enact the proposal
@@ -118,7 +119,7 @@ contract ForkTest is Test {
 
         // check that the balance of the TrustedNodes contract is now 0
         assertEq(ecox.balanceOf(trustedNodes), 0);
-        uint256 proposalVoteReward = proposal.voteReward();
+        uint256 proposalVoteReward = 9615000000000000000000;
 
         // check that the balance of each Trustee has increase commensurate with the payout contract
         for (uint256 i = 0; i < recipients.length; i++) {
