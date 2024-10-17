@@ -26,3 +26,10 @@ To test, run:
 ```
 forge test
 ```
+
+To run the script to run the proposal deploymeny to Tenderly, please run:
+```
+forge script script/Deploy.s.sol:Deploy --rpc-url $TENDERLY_VIRTUAL_FORK --broadcast
+```
+
+This requires an active Tenderly account with a virtual fork and valid key. After the simulation, run the proposal enactment using the Tenderly Simulation UI, and you can confirm it works.
