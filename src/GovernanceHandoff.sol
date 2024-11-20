@@ -7,15 +7,13 @@ import {Policy} from "currency-1.5/policy/Policy.sol";
 // import {TrustedNodes} from "currency-1.5/governance/monetary/TrustedNodes.sol";
 
 
-contract TrusteePayout is Proposal {
+contract GovernanceHandoff is Proposal {
 
-    ECOx public constant ECOX = ECOx('0xcccD1Ba9f7acD6117834E0D28F25645dECb1736a');
-
-    address public constant EXCHANGE = '0xa6285d7a469f6d7c46BF24022e309429c9d3f4Ba';
+    ECOx public constant ECOX = ECOx(0xcccD1Ba9f7acD6117834E0D28F25645dECb1736a);
 
     address public immutable governorMultisig; 
 
-    constructor(address _multisig) {
+    constructor(address _multisig) { 
         governorMultisig = _multisig;
     }
 
@@ -31,7 +29,7 @@ contract TrusteePayout is Proposal {
         returns (string memory)
     {
         return
-            "moves governance to a multisig, also removes ECO/ECOx mint/burn permissions from both the policy contract and ECOxExchange";
+            "moves governance to a multisig, also removes ECOx mint/burn permissions from the policy contract";
     }
 
     /** A URL where more details can be found.
